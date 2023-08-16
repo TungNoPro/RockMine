@@ -1,0 +1,72 @@
+if game.PlaceId == 13036939998 then
+    local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+    local Window = OrionLib:MakeWindow({Name = "Rock Mine Simulator | Tung Hub", HidePremium = false, IntroText = "Tung Hub", SaveConfig = true, ConfigFolder = "TungConfig"})
+    
+      --function
+    function autoTap()
+        while _G.autoTap == true do
+    
+    local args = {
+        [1] = workspace.Blocks.Iron
+    }
+    game:GetService("ReplicatedStorage").Remotes.Events.Damage:FireServer(unpack(args))
+    wait(.00000000000000000000000000000000001)
+    end
+    end
+    
+     function autoTap()
+        while _G.autoTap == true do
+    
+    local args = {
+        [1] = workspace.Blocks.Gold
+    }
+    game:GetService("ReplicatedStorage").Remotes.Events.Damage:FireServer(unpack(args))
+    wait(.00000000000000000000000000000000001)
+    end
+    end
+    
+     _G.autoTap = true
+     
+      local MainTab = Window:MakeTab({
+        Name = "Main 🏠",
+        Icon = "rbxassetid://4483345998",
+        PremiumOnly = false
+    })
+    
+
+    
+     --Toggles
+    MainTab:AddToggle({
+        Name = "Auto Farm",
+        Default = false,
+        Callback = function(Value)
+              _G.autoTap = Value
+            autoTap()
+          end    
+    })
+
+    
+    
+
+    MainTab:AddToggle({
+        Name = "Auto hatch ",
+        Default = false,
+        Callback = function(Value)
+            _G.egg = Value
+            while _G.egg and wait() do
+                local args = {
+                    [1] = "Beginner Egg",
+                    [2] = 1,
+                    [3] = true
+                }
+                
+                game:GetService("ReplicatedStorage").Remotes.Events.PurchaseEgg:FireServer(unpack(args))
+                wait(0)
+            end
+        end
+    })
+    
+
+
+    end
+    OrionLib:Init()
